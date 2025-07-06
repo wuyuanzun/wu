@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车马换车网 - 专业二手车交易平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary: #0d3b66;
+            --primary-dark: #0a2e4d;
+            --accent: #f4d35e;
+            --accent-dark: #e6c44d;
+            --secondary: #333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --border: #dee2e6;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            background: var(--primary);
+            color: var(--accent);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-left: 12px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-bar input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(244, 211, 94, 0.2);
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: 30px;
+            padding: 7px 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+        
+        .search-bar button:hover {
+            background: var(--accent-dark);
+        }
+        
+        .user-actions a {
+            color: var(--secondary);
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        
+        .user-actions a:hover {
+            color: var(--accent);
+        }
+        
+        /* 导航样式 */
+        nav {
+            background-color: var(--primary);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            padding: 15px 20px;
+        }
+        
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-menu li a i {
+            margin-right: 8px;
+        }
+        
+        .nav-menu li a:hover {
+            color: var(--accent);
+        }
+        
+        /* 主横幅 */
+        .hero {
+            background: linear-gradient(rgba(13, 59, 102, 0.9), rgba(13, 59, 102, 0.9)), 
+                        url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(13, 59, 102, 0.8) 0%, rgba(244, 211, 94, 0.1) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.4s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            background: var(--accent-dark);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        /* 分类导航区域 */
+        .categories {
+            padding: 50px 0 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+            text-align: center;
+            border: 1px solid rgba(13, 59, 102, 0.1);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-icon {
+            background: var(--primary);
+            color: var(--accent);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(0,0,0,0.1) 100%);
+        }
+        
+        .category-content {
+            padding: 25px 20px;
+        }
+        
+        .category-content h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        
+        .category-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            box-shadow: 0 4px 10px rgba(244, 211, 94, 0.4);
+        }
+        
+        .btn-special {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+        }
+        
+        .btn-special:hover {
+            background: linear-gradient(45deg, #ff8e53, #ff6b6b);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        /* 特别推荐入口 */
+        .special-entry {
+            background: linear-gradient(135deg, #0d3b66 0%, #1a5a8d 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 50px 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(13, 59, 102, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .special-entry::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(244,211,94,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .special-entry h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .special-entry h2 i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        .special-entry p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* 内容区域 */
+        .car-list-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .car-list-title i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .car-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .car-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .car-image {
+            height: 200px;
+            width: 100%;
+            background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .car-tag {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .car-details {
+            padding: 20px;
+        }
+        
+        .car-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .car-info {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .car-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .car-price span {
+            font-size: 14px;
+            font-weight: normal;
+            color: var(--gray);
+        }
+        
+        .car-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--gray);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--primary);
+        }
+        
+        /* 底部样式 */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 8px;
+            width: 20px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+                max-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu li {
+                padding: 10px 15px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .special-entry {
+                padding: 25px 15px;
+            }
+            
+            .special-entry h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-horse-head"></i>
+                    </div>
+                    <h1>车马<span>换车网</span></h1>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="搜索品牌、车型或关键词...">
+                    <button><i class="fas fa-search"></i> 搜索</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-phone-alt"></i> 客服中心</a>
+                    <a href="#"><i class="fas fa-user"></i> 登录/注册</a>
+                    <a href="#"><i class="fas fa-heart"></i> 收藏</a>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="#"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="#"><i class="fas fa-car"></i> 我要买车</a></li>
+                    <li><a href="#"><i class="fas fa-tags"></i> 我要卖车</a></li>
+                    <li><a href="#"><i class="fas fa-coins"></i> 车马金融</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> 质量保障</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> 客服中心</a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i> 行业资讯</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- 主横幅 -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>专业二手车交易平台，让换车更简单</h2>
+            <p>360项专业检测，90天全面保修，2年售后保障，为您提供安心购车体验</p>
+            <a href="#" class="cta-button">查看热门车源 <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+    
+    <!-- 分类导航区域 -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">车辆分类导航</h2>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>热门车型</h3>
+                        <p>最受欢迎的二手车选择，性价比高，市场认可度高</p>
+                        <button class="btn btn-primary" onclick="window.open('https://www.example.com/hot-cars', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> 查看热门车型
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>经济实惠</h3>
+                        <p>价格亲民，适合预算有限的购车者</p>
+                        <button class="btn btn-primary" onclick="window.open('https://www.example.com/budget-cars', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> 查看经济车型
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>豪华车系</h3>
+                        <p>高端品牌，尊贵体验，品质保证</p>
+                        <button class="btn btn-primary" onclick="window.open('https://www.example.com/luxury-cars', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> 查看豪华车系
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>新能源车</h3>
+                        <p>环保节能，未来趋势，经济实用</p>
+                        <button class="btn btn-primary" onclick="window.open('https://www.example.com/electric-cars', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> 查看新能源车
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 特别推荐入口 -->
+    <div class="container">
+        <div class="special-entry">
+            <h2><i class="fas fa-star"></i> 特别推荐：限时特惠专场</h2>
+            <p>精选高品质二手车，限时优惠最高达30%，专业检测，品质保证，点击下方按钮立即进入！</p>
+            <button class="btn btn-special" onclick="window.open('https://www.example.com/special-sale', '_blank')">
+                <i class="fas fa-gift"></i> 立即进入特惠专场
+            </button>
+        </div>
+    </div>
+    
+    <!-- 热门推荐 -->
+    <div class="container">
+        <h2 class="car-list-title"><i class="fas fa-fire"></i> 热门推荐</h2>
+        
+        <div class="car-list">
+            <!-- 车辆卡片 1 -->
+            <div class="car-card">
+                <div class="car-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    丰田 凯美瑞
+                </div>
+                <div class="car-details">
+                    <h3 class="car-title">丰田 凯美瑞 2020款 2.0G 豪华版</h3>
+                    <div class="car-info">
+                        <span>2020年上牌</span>
+                        <span>3.2万公里</span>
+                        <span>上海</span>
+                    </div>
+                    <div class="car-price">15.68万 <span>新车含税价: 23.6万</span></div>
+                    <div class="car-actions">
+                        <button class="btn btn-primary" onclick="openCarDetail('丰田 凯美瑞 2020款 2.0G 豪华版')">
+                            <i class="fas fa-phone-alt"></i> 预约看车
+                        </button>
+                        <button class="btn btn-outline"><i class="fas fa-comment"></i> 咨询</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 车辆卡片 2 -->
+            <div class="car-card">
+                <div class="car-image" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">
+                    本田 CR-V
+                </div>
+                <div class="car-details">
+                    <h3 class="car-title">本田 CR-V 2019款 240TURBO CVT两驱舒适版</h3>
+                    <div class="car-info">
+                        <span>2019年上牌</span>
+                        <span>4.8万公里</span>
+                        <span>北京</span>
+                    </div>
+                    <div class="car-price">14.98万 <span>新车含税价: 22.3万</span></div>
+                    <div class="car-actions">
+                        <button class="btn btn-primary" onclick="openCarDetail('本田 CR-V 2019款 240TURBO CVT两驱舒适版')">
+                            <i class="fas fa-phone-alt"></i> 预约看车
+                        </button>
+                        <button class="btn btn-outline"><i class="fas fa-comment"></i> 咨询</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 车辆卡片 3 -->
+            <div class="car-card">
+                <div class="car-image" style="background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);">
+                    大众 途观L
+                </div>
+                <div class="car-details">
+                    <h3 class="car-title">大众 途观L 2018款 330TSI 自动两驱风尚版</h3>
+                    <div class="car-info">
+                        <span>2018年上牌</span>
+                        <span>6.5万公里</span>
+                        <span>广州</span>
+                    </div>
+                    <div class="car-price">13.28万 <span>新车含税价: 25.8万</span></div>
+                    <div class="car-actions">
+                        <button class="btn btn-primary" onclick="openCarDetail('大众 途观L 2018款 330TSI 自动两驱风尚版')">
+                            <i class="fas fa-phone-alt"></i> 预约看车
+                        </button>
+                        <button class="btn btn-outline"><i class="fas fa-comment"></i> 咨询</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 车辆卡片 4 -->
+            <div class="car-card">
+                <div class="car-image" style="background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);">
+                    特斯拉 Model 3
+                </div>
+                <div class="car-details">
+                    <h3 class="car-title">特斯拉 Model 3 2021款 标准续航后驱升级版</h3>
+                    <div class="car-info">
+                        <span>2021年上牌</span>
+                        <span>1.8万公里</span>
+                        <span>深圳</span>
+                    </div>
+                    <div class="car-price">22.98万 <span>新车含税价: 29.9万</span></div>
+                    <div class="car-actions">
+                        <button class="btn btn-primary" onclick="openCarDetail('特斯拉 Model 3 2021款 标准续航后驱升级版')">
+                            <i class="fas fa-phone-alt"></i> 预约看车
+                        </button>
+                        <button class="btn btn-outline"><i class="fas fa-comment"></i> 咨询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="car-list-title"><i class="fas fa-bolt"></i> 超值好车</h2>
+        
+        <div class="car-list">
+            <!-- 车辆卡片 5 -->
+            <div class="car-card">
+                <div class="car-image" style="background: linear-gradient(135deg, #96deda 0%, #50c9c3 100%);">
+                    日产 轩逸
+                </div>
+                <div class="car-details">
+                    <h3 class="car-title">日产 轩逸 2020款 1.6L XL CVT智享版</h3>
+                    <div class="car-info">
+                        <span>2020年上牌</span>
+                        <span>3.6万公里</span>
+                        <span>杭州</span>
+                    </div>
+                    <div class="car-price">9.28万 <span>新车含税价: 15.2万</span></div>
+                    <div class="car-actions">
+                        <button class="btn btn-primary" onclick="openCarDetail('日产 轩逸 2020款 1.6L XL CVT智享版')">
+                            <i class="fas fa-phone-alt"></i> 预约看车
+                        </button>
+                        <button class="btn btn-outline"><i class="fas fa-comment"></i> 咨询</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 车辆卡片 6 -->
+            <div class="car-card">
+                <div class="car-image" style="background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);">
+                    宝马 3系
+                </div>
+                <div class="car-details">
+                    <h3 class="car-title">宝马 3系 2020款 325Li M运动套装</h3>
+                    <div class="car-info">
+                        <span>2020年上牌</span>
+                        <span>2.9万公里</span>
+                        <span>成都</span>
+                    </div>
+                    <div class="car-price">26.88万 <span>新车含税价: 38.6万</span></div>
+                    <div class="car-actions">
+                        <button class="btn btn-primary" onclick="openCarDetail('宝马 3系 2020款 325Li M运动套装')">
+                            <i class="fas fa-phone-alt"></i> 预约看车
+                        </button>
+                        <button class="btn btn-outline"><i class="fas fa-comment"></i> 咨询</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 车辆卡片 7 -->
+            <div class="car-card">
+                <div class="car-image" style="background: linear-gradient(135deg, #537895 0%, #09203f 100%);">
+                    奥迪 A4L
+                </div>
+                <div class="car-details">
+                    <h3 class="car-title">奥迪 A4L 2019款 40 TFSI 进取型</h3>
+                    <div class="car-info">
+                        <span>2019年上牌</span>
+                        <span>4.5万公里</span>
+                        <span>南京</span>
+                    </div>
+                    <div class="car-price">21.98万 <span>新车含税价: 32.4万</span></div>
+                    <div class="car-actions">
+                        <button class="btn btn-primary" onclick="openCarDetail('奥迪 A4L 2019款 40 TFSI 进取型')">
+                            <i class="fas fa-phone-alt"></i> 预约看车
+                        </button>
+                        <button class="btn btn-outline"><i class="fas fa-comment"></i> 咨询</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 车辆卡片 8 -->
+            <div class="car-card">
+                <div class="car-image" style="background: linear-gradient(135deg, #ff8177 0%, #ff867a 100%);">
+                    哈弗 H6
+                </div>
+                <div class="car-details">
+                    <h3 class="car-title">哈弗 H6 2021款 第三代 1.5T 自动两驱Max</h3>
+                    <div class="car-info">
+                        <span>2021年上牌</span>
+                        <span>2.3万公里</span>
+                        <span>重庆</span>
+                    </div>
+                    <div class="car-price">9.88万 <span>新车含税价: 13.9万</span></div>
+                    <div class="car-actions">
+                        <button class="btn btn-primary" onclick="openCarDetail('哈弗 H6 2021款 第三代 1.5T 自动两驱Max')">
+                            <i class="fas fa-phone-alt"></i> 预约看车
+                        </button>
+                        <button class="btn btn-outline"><i class="fas fa-comment"></i> 咨询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-building"></i> 公司简介</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> 加入我们</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 全国门店</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> 媒体报道</a></li>
+                        <li><a href="#"><i class="fas fa-user-shield"></i> 隐私政策</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>买车服务</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-car"></i> 找车服务</a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i> 购车流程</a></li>
+                        <li><a href="#"><i class="fas fa-coins"></i> 金融服务</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> 售后保障</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> 常见问题</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>卖车服务</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-tags"></i> 卖车流程</a></li>
+                        <li><a href="#"><i class="fas fa-gavel"></i> 高价卖车</a></li>
+                        <li><a href="#"><i class="fas fa-calculator"></i> 免费估价</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> 全国比价</a></li>
+                        <li><a href="#"><i class="fas fa-comments"></i> 卖车答疑</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> 客服热线：400-888-9999</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> 邮箱：contact@chema.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 总部地址：上海市浦东新区车马大厦</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> 服务时间：9:00-21:00</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 车马换车网 版权所有 | 沪ICP备12345678号-1 | 公安备案号：31011502001234</p>
+                <p>车马换车网 - 专业的二手车交易平台</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 打开车辆详情页的函数
+        function openCarDetail(carName) {
+            // 创建新窗口
+            const newWindow = window.open('', '_blank', 'width=800,height=600');
+            
+            // 写入新窗口的内容
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="zh-CN">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>${carName} - 车马换车网</title>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                    <style>
+                        * {
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+                        }
+                        body {
+                            background-color: #f8f9fa;
+                            color: #333;
+                            line-height: 1.6;
+                        }
+                        .container {
+                            max-width: 800px;
+                            margin: 0 auto;
+                            padding: 30px;
+                        }
+                        .detail-header {
+                            text-align: center;
+                            margin-bottom: 30px;
+                            padding-bottom: 20px;
+                            border-bottom: 1px solid #eee;
+                        }
+                        .detail-header h1 {
+                            color: #0d3b66;
+                            font-size: 28px;
+                            margin-bottom: 15px;
+                        }
+                        .detail-header p {
+                            color: #6c757d;
+                            font-size: 16px;
+                        }
+                        .car-images {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 15px;
+                            margin-bottom: 30px;
+                        }
+                        .car-image {
+                            height: 180px;
+                            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+                            border-radius: 8px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-weight: bold;
+                            font-size: 18px;
+                        }
+                        .car-info {
+                            background: white;
+                            border-radius: 10px;
+                            padding: 25px;
+                            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                            margin-bottom: 30px;
+                        }
+                        .info-grid {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 20px;
+                        }
+                        .info-item {
+                            margin-bottom: 15px;
+                        }
+                        .info-item h3 {
+                            color: #0d3b66;
+                            font-size: 18px;
+                            margin-bottom: 8px;
+                        }
+                        .info-item p {
+                            color: #6c757d;
+                            font-size: 16px;
+                        }
+                        .price-box {
+                            background: linear-gradient(135deg, #0d3b66 0%, #0a2e4d 100%);
+                            color: white;
+                            border-radius: 10px;
+                            padding: 25px;
+                            text-align: center;
+                            margin-bottom: 30px;
+                        }
+                        .price-box h2 {
+                            font-size: 24px;
+                            margin-bottom: 10px;
+                        }
+                        .price-box .price {
+                            font-size: 36px;
+                            font-weight: bold;
+                            margin-bottom: 20px;
+                            color: #f4d35e;
+                        }
+                        .btn-group {
+                            display: flex;
+                            gap: 15px;
+                            justify-content: center;
+                        }
+                        .btn {
+                            padding: 12px 25px;
+                            border-radius: 30px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            border: none;
+                        }
+                        .btn-primary {
+                            background: #f4d35e;
+                            color: #0d3b66;
+                        }
+                        .btn-outline {
+                            background: transparent;
+                            border: 2px solid #f4d35e;
+                            color: #f4d35e;
+                        }
+                        .btn:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="detail-header">
+                            <h1>${carName}</h1>
+                            <p>车马换车网 - 专业二手车交易平台</p>
+                        </div>
+                        
+                        <div class="car-images">
+                            <div class="car-image">外观照片</div>
+                            <div class="car-image">内饰照片</div>
+                            <div class="car-image">发动机照片</div>
+                        </div>
+                        
+                        <div class="car-info">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <h3>基本信息</h3>
+                                    <p>上牌时间: 2020年</p>
+                                    <p>行驶里程: 3.2万公里</p>
+                                    <p>车辆颜色: 白色</p>
+                                    <p>车辆所在地: 上海</p>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <h3>车辆配置</h3>
+                                    <p>变速箱: 自动挡</p>
+                                    <p>排量: 2.0L</p>
+                                    <p>燃油类型: 汽油</p>
+                                    <p>排放标准: 国六</p>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <h3>车辆状态</h3>
+                                    <p>车况: 无事故</p>
+                                    <p>过户次数: 0次</p>
+                                    <p>年检到期: 2024年12月</p>
+                                    <p>保险到期: 2024年12月</p>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <h3>检测报告</h3>
+                                    <p>检测日期: 2023年8月15日</p>
+                                    <p>检测结果: 360项检测全部通过</p>
+                                    <p>检测师: 张师傅 (高级检测师)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="price-box">
+                            <h2>当前售价</h2>
+                            <div class="price">15.68万</div>
+                            <p>新车含税价: 23.6万 | 节省: 7.92万</p>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="alert('预约成功！客服将尽快联系您安排看车。')">
+                                <i class="fas fa-phone-alt"></i> 立即预约看车
+                            </button>
+                            <button class="btn btn-outline" onclick="window.close()">
+                                <i class="fas fa-times"></i> 关闭窗口
+                            </button>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            
+            // 完成文档写入
+            newWindow.document.close();
+        }
+    </script>
+</body>
+</html>
